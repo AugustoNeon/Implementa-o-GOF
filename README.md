@@ -1,7 +1,7 @@
 # biblioteca-gof
 
 Sistema de empréstimo de livros com padrões GoF.
-PUCPR, Modelagem de Sistemas Computacionais, Prof. Edson Emílio Scalabrin, 2S/2026.
+
 
 ## O que precisa ter instalado
 
@@ -64,7 +64,8 @@ devolução atrasada, multa, boleto, pagamento e inspeção.
 
 ```
 banco/                          scripts SQL do MySQL
-modelos/                        modelo UML no Astah (Trabalho_GoF.asta) e o PDF com os diagramassrc/main/java/biblioteca/
+modelos/                        modelo UML no Astah (Trabalho_GoF.asta) e o PDF com os diagramas
+src/main/java/biblioteca/
   dominio/       Livro, Pessoa, Estudante, Atendente, Reserva, Emprestimo, Devolucao, interfaces iLivro...
   estado/        State (requisito 1)
   multa/         Strategy (2)
@@ -88,6 +89,22 @@ A tabela de rastreabilidade (requisito, padrão, classes e teste) está em [RAST
 - As multas e a fila de inspeção ficam só em memória, porque a fábrica do requisito 8 cria apenas os repositórios de Livro, Movimentacao e Relacionamento.
 - Os bancos A e B são classes simuladas, com APIs diferentes. O adaptador faz a conversão.
 - O Oracle é réplica do MySQL e a aplicação não escreve nele.
+
+## Uso de LLM
+
+- **Ferramenta:** Claude Code.
+- **Modelo:** Claude Sonnet 5.5.
+
+Onde foi usado:
+
+- **Código:** rollback da fachada de circulação (`FachadaDeCirculacao`) e decorador de cache da consulta (`ConsultaComCache`).
+- **Orientação:** a lógica do `ExecutorDeSolicitacoes` (Command) foi orientada pelo modelo e implementada pela equipe.
+- **Interface:** montagem da interface de linha de comando (`Main`).
+- **Testes:** testes de cenário (`R01_...` a `R10_...`).
+- **Documentação:** README, tabela de rastreabilidade e demais textos.
+- **Uso geral:** explicação e aplicação dos padrões GoF e organização das pastas e pacotes.
+
+Os principais pedidos feitos ao modelo e o que a equipe aceitou, corrigiu ou descartou estão em [REGISTRO_LLM.md](REGISTRO_LLM.md).
 
 ## Equipe
 
